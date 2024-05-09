@@ -1,0 +1,87 @@
+{
+    "sdk": 4,
+    "version": 1000,
+    "name": "Touch Portal Companion Plugin",
+    "id": "Companion",
+    "plugin_start_cmd": "\"%TP_PLUGIN_FOLDER%Companion\\Companion.exe\" \"%TP_PLUGIN_FOLDER%Companion\"",
+    "configuration": {
+        "colorDark": "#1E1E1E",
+        "colorLight": "#A20210"
+    },
+    "settings": [
+        {
+            "name": "Companion IP Address",
+            "type": "text",
+            "default": "On",
+            "maxLength": 3
+        }
+    ],
+    "categories": [
+        {
+            "id": "Companion",
+            "name": "Companion",
+            "imagepath": "%TP_PLUGIN_FOLDER%Companion/Companion-24x24.png",
+            "connectors":[
+                {
+                    "id": "companion_volume_adjust_connector",
+                    "prefix": "Companion:",
+                    "name":"Companion Adjust Volume",
+                    "format":"Companion: Control the Volume"
+                }
+            ],
+            "actions": [
+                {
+                    "id": "companion_button_press",
+                    "prefix": "Companion:",
+                    "name":"Companion Press Button",
+                    "format": "Press the button in Companion Page:{$companion_buttonPage$} Row:{$companion_buttonRow$} Column:{$companion_buttonColumn$}",
+                    "tryInline": true,
+                    "type": "communicate",
+                    "hasHoldFunctionality": true,
+                    "data":[
+                        {
+                            "id":"companion_buttonPage",
+                            "type":"text",
+                            "label": "value",
+                            "default": "0",
+                            "allowDecimals": false
+                        },
+                        {
+                            "id":"companion_buttonRow",
+                            "type":"text",
+                            "label": "Row",
+                            "default": "0",
+                            "allowDecimals": false
+                        },
+                        {
+                            "id":"companion_buttonColumn",
+                            "type":"text",
+                            "label": "Column",
+                            "default": "0",
+                            "allowDecimals": false
+                        }
+                    ]
+                }
+            ],
+            "states": [
+                {
+                    "id": "Companion_playing_state",
+                    "type": "choice",
+                    "desc": "Companion Playing State",
+                    "default": "Stopped",
+                    "valueChoices": [
+                        "Stopped",
+                        "Playing"
+                    ]
+                },
+                {
+                    "id": "Companion_current_track_remaining_time",
+                    "type": "text",
+                    "desc": "Companion Current Track Time Remaining",
+                    "default": ""
+                }
+            ],
+            "events": []
+        }
+    ]
+}
